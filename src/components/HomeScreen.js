@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
     Button,
     Container,
@@ -55,7 +54,7 @@ const useStyles = makeStyles({
 const HomeScreen = () => {
     const classes = useStyles();
     const [cart, setCart] = useState([]);
-    const [menu, setMenu] = useState([
+    const [menu] = useState([
         { item: "soup", cost: 100 },
         { item: "ramen", cost: 100 },
         { item: "chips", cost: 10 },
