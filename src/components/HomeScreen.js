@@ -9,6 +9,7 @@ import {
     Chip,
 } from "@material-ui/core";
 import { find, startCase, sumBy } from "lodash";
+import OrderModal from "./OrderModal";
 
 const useStyles = makeStyles({
     card: {
@@ -60,6 +61,12 @@ const HomeScreen = () => {
         { item: "chips", cost: 10 },
         { item: "chicken_nuggets", cost: 50 },
     ]);
+
+    const [showSubmit, setShowSubmit] = useState(false);
+
+    const handleToggleSubmit = () => {
+        setShowSubmit(!showSubmit);
+    };
 
     const handleAddToCart = (item) => {
         const updatedCart = [...cart];
@@ -114,11 +121,16 @@ const HomeScreen = () => {
                         Total: {sumBy(cart, (c) => c.cost)}
                     </p>
 
-                    <Button variant="outlined" className={classes.orderButton}>
+                    <Button
+                        variant="outlined"
+                        className={classes.orderButton}
+                        onClick={handleToggleSubmit}
+                    >
                         Place your order
                     </Button>
                 </div>
             </div>
+            <OrderModal open={showSubmit} toggleOpen={handleToggleSubmit} />
         </Container>
     );
 };
